@@ -3,50 +3,67 @@ package com.beatriz.mscars.service;
 import com.beatriz.mscars.dto.CarDtoRequest;
 import com.beatriz.mscars.dto.CarDtoResponse;
 import com.beatriz.mscars.entity.Car;
+import com.beatriz.mscars.exception.IdNotFoundException;
+import com.beatriz.mscars.exception.NotUniqueCarException;
+import com.beatriz.mscars.exception.NotUniquePilotException;
 import com.beatriz.mscars.repository.CarRepository;
-import com.beatriz.mscars.repository.PilotRepository;
 import org.modelmapper.ModelMapper;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 
 @Service
 public class CarService {
+    @Autowired
     private CarRepository carRepository;
-    private PilotRepository pilotRepository;
+    @Autowired
     private ModelMapper mapper;
 
-    public CarService(CarRepository carRepository, PilotRepository pilotRepository, ModelMapper mapper) {
+    public CarService(CarRepository carRepository, ModelMapper mapper) {
         this.carRepository = carRepository;
-        this.pilotRepository = pilotRepository;
         this.mapper = mapper;
     }
 
-    // convert Entity into DTO
     private CarDtoResponse mapToDTO(Car car){
         CarDtoResponse carDtoResponse = mapper.map(car, CarDtoResponse.class);
         return carDtoResponse;
     }
 
-    // convert DTO to entity
     private Car mapToEntity(CarDtoRequest carDtoRequest){
         Car car = mapper.map(carDtoRequest, Car.class);
         return car;
     }
 
-    public CarDtoResponse createCar(CarDtoRequest carDtoRequest) {
+    public boolean isUniquePilot(String name, Integer age){
+        return carRepository.existsByPilotNameAndPilotAge(name, age);
+    }
 
-        // convert DTO to entity
-        Car car = mapToEntity(carDtoRequest);
+    public boolean isUniqueCar(CarDtoRequest carDtoRequest){
+        return carRepository.existsByBrandAndModelAndYear(carDtoRequest.getBrand(), carDtoRequest.getModel(), carDtoRequest.getYear());
+    }
+
+    public CarDtoResponse createCar(CarDtoRequest carDtoRequest) {
+        if(isUniquePilot(carDtoRequest.getPilot().getName(), carDtoRequest.getPilot().getAge())){
+            throw new NotUniquePilotException("There is already a identical pilot");
+        }
+
+        if (isUniqueCar(carDtoRequest)){
+            throw new NotUniqueCarException("There is already a identical car");
+        }
+
+        Car car = mapper.map(carDtoRequest, Car.class);
         Car newCar = carRepository.save(car);
 
-        // convert entity to DTO
-        CarDtoResponse carResponse = mapToDTO(newCar);
-        return carResponse;
+//        Car car = mapToEntity(carDtoRequest);
+//        Car newCar = carRepository.save(car);
+//
+//        CarDtoResponse carResponse = mapToDTO(newCar);
+        return mapper.map(newCar, CarDtoResponse.class);
     }
 
     public CarDtoResponse getCarById(String id) {
-        Car car = carRepository.findById(id).orElseThrow(() -> new RuntimeException());
+        Car car = carRepository.findById(id).orElseThrow(() -> new IdNotFoundException("Id not found"));
         return mapToDTO(car);
     }
 
@@ -55,8 +72,7 @@ public class CarService {
     }
 
     public CarDtoResponse updateCar(CarDtoRequest carDtoRequest, String id) {
-        // get post by id from the database
-        Car car = carRepository.findById(id).orElseThrow(() -> new RuntimeException());
+        Car car = carRepository.findById(id).orElseThrow(() -> new IdNotFoundException("Id not found"));
 
         car.setBrand(carDtoRequest.getBrand());
         car.setModel(carDtoRequest.getModel());
@@ -68,8 +84,7 @@ public class CarService {
     }
 
     public void deleteCarById(String id) {
-        // get post by id from the database
-        Car car = carRepository.findById(id).orElseThrow(() -> new RuntimeException());
+        Car car = carRepository.findById(id).orElseThrow(() -> new IdNotFoundException("Id not found"));
         carRepository.delete(car);
     }
 }
