@@ -4,7 +4,6 @@ import com.beatriz.mscars.dto.CarDtoRequest;
 import com.beatriz.mscars.dto.CarDtoResponse;
 import com.beatriz.mscars.entity.Car;
 import com.beatriz.mscars.service.CarService;
-import org.springframework.beans.BeanUtils;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
