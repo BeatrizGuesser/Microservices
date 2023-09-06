@@ -1,0 +1,15 @@
+
+ƒ
+java:S1488"fImmediately return this expression instead of assigning it to the temporary variable "carDtoResponse".(ŒÑêú8ÁˆûÖ¦1
+}
+java:S1488!"[Immediately return this expression instead of assigning it to the temporary variable "car".(ƒËäÌùÿÿÿÿ8ÁˆûÖ¦1
+€
+java:S1488,"cImmediately return this expression instead of assigning it to the temporary variable "carResponse".(øİß‚8ÁˆûÖ¦1
+^
+java:S16121"BReplace this lambda with method reference 'RuntimeException::new'.(²äğU8ÇˆûÖ¦1
+^
+java:S1612;"BReplace this lambda with method reference 'RuntimeException::new'.(²äğU8ÉˆûÖ¦1
+^
+java:S1612H"BReplace this lambda with method reference 'RuntimeException::new'.(²äğU8¶á†×¦1
+P
+java:S1068"3Remove this unused "pilotRepository" private field.(€“¼Ì8ÊˆûÖ¦1
