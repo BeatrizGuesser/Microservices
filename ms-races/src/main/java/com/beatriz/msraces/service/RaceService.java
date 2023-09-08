@@ -1,12 +1,12 @@
 package com.beatriz.msraces.service;
 
+import com.beatriz.msraces.client.CarFeignClient;
 import com.beatriz.msraces.dto.RaceDtoRequest;
 import com.beatriz.msraces.dto.RaceDtoResponse;
 import com.beatriz.msraces.entity.Race;
 import com.beatriz.msraces.exception.IdNotFoundException;
 import com.beatriz.msraces.repository.RaceRepository;
 import org.modelmapper.ModelMapper;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -15,10 +15,12 @@ import java.util.List;
 public class RaceService {
     private RaceRepository raceRepository;
     private ModelMapper mapper;
+    private CarFeignClient carFeignClient;
 
-    public RaceService(RaceRepository raceRepository, ModelMapper mapper) {
+    public RaceService(RaceRepository raceRepository, ModelMapper mapper, CarFeignClient carFeignClient) {
         this.raceRepository = raceRepository;
         this.mapper = mapper;
+        this.carFeignClient = carFeignClient;
     }
 
     private RaceDtoResponse mapToDTO(Race race){
@@ -56,4 +58,5 @@ public class RaceService {
         Race race = raceRepository.findById(id).orElseThrow(() -> new IdNotFoundException("Id not found"));
         raceRepository.delete(race);
     }
+
 }

@@ -8,16 +8,16 @@ import com.beatriz.mscars.exception.NotUniqueCarException;
 import com.beatriz.mscars.exception.NotUniquePilotException;
 import com.beatriz.mscars.repository.CarRepository;
 import org.modelmapper.ModelMapper;
-import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 public class CarService {
-    @Autowired
     private CarRepository carRepository;
-    @Autowired
     private ModelMapper mapper;
 
     public CarService(CarRepository carRepository, ModelMapper mapper) {
@@ -28,11 +28,6 @@ public class CarService {
     private CarDtoResponse mapToDTO(Car car){
         CarDtoResponse carDtoResponse = mapper.map(car, CarDtoResponse.class);
         return carDtoResponse;
-    }
-
-    private Car mapToEntity(CarDtoRequest carDtoRequest){
-        Car car = mapper.map(carDtoRequest, Car.class);
-        return car;
     }
 
     public boolean isUniquePilot(String name, Integer age){
@@ -55,10 +50,6 @@ public class CarService {
         Car car = mapper.map(carDtoRequest, Car.class);
         Car newCar = carRepository.save(car);
 
-//        Car car = mapToEntity(carDtoRequest);
-//        Car newCar = carRepository.save(car);
-//
-//        CarDtoResponse carResponse = mapToDTO(newCar);
         return mapper.map(newCar, CarDtoResponse.class);
     }
 
@@ -86,5 +77,12 @@ public class CarService {
     public void deleteCarById(String id) {
         Car car = carRepository.findById(id).orElseThrow(() -> new IdNotFoundException("Id not found"));
         carRepository.delete(car);
+    }
+
+    public List<CarDtoResponse> getTop10Cars() {
+        Pageable pageable = PageRequest.of(0, 10);
+        List<Car> top10Cars = carRepository.findAll(pageable).getContent();
+
+        return top10Cars.stream().map(this::mapToDTO).collect(Collectors.toList());
     }
 }

@@ -1,5 +1,7 @@
 package com.beatriz.msraces.controller;
 
+import com.beatriz.msraces.client.CarFeignClient;
+import com.beatriz.msraces.dto.CarDtoResponse;
 import com.beatriz.msraces.dto.RaceDtoRequest;
 import com.beatriz.msraces.dto.RaceDtoResponse;
 import com.beatriz.msraces.entity.Race;
@@ -14,9 +16,11 @@ import java.util.List;
 @RequestMapping("/api/v1/races")
 public class RaceController {
     private RaceService raceService;
+    private CarFeignClient carFeignClient;
 
-    public RaceController(RaceService raceService) {
+    public RaceController(RaceService raceService, CarFeignClient carFeignClient) {
         this.raceService = raceService;
+        this.carFeignClient = carFeignClient;
     }
 
     @PostMapping("/post")
@@ -44,5 +48,10 @@ public class RaceController {
     public ResponseEntity<String> deleteRace(@PathVariable String id){
         raceService.deleteRaceById(id);
         return new ResponseEntity<>("Race deleted successfully.", HttpStatus.OK);
+    }
+
+    @GetMapping("/get10")
+    public List<CarDtoResponse> getTop10Cars(){
+        return carFeignClient.getTop10Cars();
     }
 }

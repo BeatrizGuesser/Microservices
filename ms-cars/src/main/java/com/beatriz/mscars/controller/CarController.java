@@ -4,19 +4,21 @@ import com.beatriz.mscars.dto.CarDtoRequest;
 import com.beatriz.mscars.dto.CarDtoResponse;
 import com.beatriz.mscars.entity.Car;
 import com.beatriz.mscars.service.CarService;
+import org.modelmapper.ModelMapper;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
-
 @RestController
 @RequestMapping("/api/v1/cars")
 public class CarController {
     private CarService carService;
+    private ModelMapper mapper;
 
-    public CarController(CarService carService) {
+    public CarController(CarService carService, ModelMapper mapper) {
         this.carService = carService;
+        this.mapper = mapper;
     }
 
     @PostMapping("/post")
@@ -44,5 +46,10 @@ public class CarController {
     public ResponseEntity<String> deleteCar(@PathVariable String id){
         carService.deleteCarById(id);
         return new ResponseEntity<>("Car deleted successfully.", HttpStatus.OK);
+    }
+
+    @GetMapping("/get/top10")
+    public List<CarDtoResponse> getTop10Cars() {
+        return carService.getTop10Cars();
     }
 }
