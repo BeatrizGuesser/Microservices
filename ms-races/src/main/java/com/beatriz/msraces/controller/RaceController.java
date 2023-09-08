@@ -11,6 +11,8 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Random;
+import java.util.stream.Collectors;
 
 @RestController
 @RequestMapping("/api/v1/races")
@@ -34,7 +36,7 @@ public class RaceController {
     }
 
     @GetMapping("/get")
-    public List<Race> findAll() {
+    public List<RaceDtoResponse> findAll() {
         return raceService.findAll();
     }
 
@@ -54,4 +56,5 @@ public class RaceController {
     public List<CarDtoResponse> getTop10Cars(){
         return carFeignClient.getTop10Cars();
     }
+
 }

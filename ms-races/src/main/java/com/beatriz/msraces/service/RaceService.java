@@ -1,6 +1,7 @@
 package com.beatriz.msraces.service;
 
 import com.beatriz.msraces.client.CarFeignClient;
+import com.beatriz.msraces.dto.CarDtoResponse;
 import com.beatriz.msraces.dto.RaceDtoRequest;
 import com.beatriz.msraces.dto.RaceDtoResponse;
 import com.beatriz.msraces.entity.Race;
@@ -9,7 +10,11 @@ import com.beatriz.msraces.repository.RaceRepository;
 import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
+import java.util.Random;
+import java.util.stream.Collectors;
 
 @Service
 public class RaceService {
@@ -29,7 +34,12 @@ public class RaceService {
     }
 
     public RaceDtoResponse createRace(RaceDtoRequest raceDtoRequest) {
+        List<CarDtoResponse> randomCars = getRandomCarsForRace();
+
         Race race = mapper.map(raceDtoRequest, Race.class);
+
+        race.setCars(randomCars);
+
         Race newRace = raceRepository.save(race);
         return mapper.map(newRace, RaceDtoResponse.class);
     }
@@ -39,8 +49,11 @@ public class RaceService {
         return mapToDTO(race);
     }
 
-    public List<Race> findAll() {
-        return raceRepository.findAll();
+    public List<RaceDtoResponse> findAll() {
+        List<Race> races = raceRepository.findAll();
+        return races.stream()
+                .map(car -> mapper.map(car, RaceDtoResponse.class))
+                .collect(Collectors.toList());
     }
 
     public RaceDtoResponse updateRace(RaceDtoRequest raceDtoRequest, String id) {
@@ -58,5 +71,15 @@ public class RaceService {
         Race race = raceRepository.findById(id).orElseThrow(() -> new IdNotFoundException("Id not found"));
         raceRepository.delete(race);
     }
+
+    public List<CarDtoResponse> getRandomCarsForRace() {
+        List<CarDtoResponse> allCars = carFeignClient.getAllCars();
+        Collections.shuffle(allCars);
+        int numCarsToSelect = new Random().nextInt(8) + 3;
+        List<CarDtoResponse> selectedCars = allCars.subList(0, numCarsToSelect);
+
+        return selectedCars;
+    }
+
 
 }

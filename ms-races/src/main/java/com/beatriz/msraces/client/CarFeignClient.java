@@ -10,4 +10,6 @@ import java.util.List;
 public interface CarFeignClient {
     @GetMapping("/api/v1/cars/get/top10")
     List<CarDtoResponse> getTop10Cars();
+    @GetMapping("/api/v1/cars/get")
+    List<CarDtoResponse> getAllCars();
 }
