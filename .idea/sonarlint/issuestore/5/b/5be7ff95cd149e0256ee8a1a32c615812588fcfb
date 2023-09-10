@@ -1,0 +1,20 @@
+
+^
+java:S1128"<Remove this unused import 'com.beatriz.msraces.entity.Race'.(‘å¬’ûÿÿÿÿ8ÙŸÈ¸§1
+h
+java:S1128"KRemove this unused import 'com.beatriz.msraces.entity.RaceCarRelationship'.(ıóÍ°8ÚŸÈ¸§1
+k
+java:S1128	"NRemove this unused import 'com.beatriz.msraces.exception.IdNotFoundException'.(ÖÿÔ8ÚŸÈ¸§1
+v
+java:S1128
+"YRemove this unused import 'com.beatriz.msraces.repository.RaceCarRelationshipRepository'.(´»¯È8ÚŸÈ¸§1
+g
+java:S1128"JRemove this unused import 'com.beatriz.msraces.repository.RaceRepository'.(èùŸ8ÚŸÈ¸§1
+Z
+java:S1128"8Remove this unused import 'org.modelmapper.ModelMapper'.(ó¿Ôúÿÿÿÿ8ÚŸÈ¸§1
+N
+java:S1128"1Remove this unused import 'java.util.Comparator'.(î¹ó¹8ÚŸÈ¸§1
+O
+java:S1128"-Remove this unused import 'java.util.Random'.(èøÉ›ùÿÿÿÿ8ÚŸÈ¸§1
+Z
+java:S1128"8Remove this unused import 'java.util.stream.Collectors'.(Óóº´úÿÿÿÿ8ÚŸÈ¸§1

@@ -5,12 +5,13 @@ import com.beatriz.msraces.dto.CarDtoResponse;
 import com.beatriz.msraces.dto.RaceDtoRequest;
 import com.beatriz.msraces.dto.RaceDtoResponse;
 import com.beatriz.msraces.entity.Race;
+import com.beatriz.msraces.exception.CarNotFoundException;
 import com.beatriz.msraces.exception.IdNotFoundException;
+import com.beatriz.msraces.exception.InvalidOvertakeException;
 import com.beatriz.msraces.repository.RaceRepository;
 import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 import java.util.Random;
@@ -22,11 +23,13 @@ public class RaceService {
     private ModelMapper mapper;
     private CarFeignClient carFeignClient;
 
+
     public RaceService(RaceRepository raceRepository, ModelMapper mapper, CarFeignClient carFeignClient) {
         this.raceRepository = raceRepository;
         this.mapper = mapper;
         this.carFeignClient = carFeignClient;
     }
+
 
     private RaceDtoResponse mapToDTO(Race race){
         RaceDtoResponse raceDtoResponse = mapper.map(race, RaceDtoResponse.class);
@@ -44,9 +47,10 @@ public class RaceService {
         return mapper.map(newRace, RaceDtoResponse.class);
     }
 
-    public RaceDtoResponse getRaceById(String id) {
+
+    public Race getRaceById(String id) {
         Race race = raceRepository.findById(id).orElseThrow(() -> new IdNotFoundException("Id not found"));
-        return mapToDTO(race);
+        return race;
     }
 
     public List<RaceDtoResponse> findAll() {
@@ -81,5 +85,38 @@ public class RaceService {
         return selectedCars;
     }
 
+    public RaceDtoResponse overtakeCar(String raceId, String carId, String carToOvertakeId) {
+        Race race = raceRepository.findById(raceId).orElseThrow(() -> new IdNotFoundException("Race not found"));
+
+        CarDtoResponse car = null;
+        CarDtoResponse carToOvertake = null;
+
+        for (CarDtoResponse c : race.getCars()) {
+            if (c.getId().equals(carId)) {
+                car = c;
+            }
+            if (c.getId().equals(carToOvertakeId)) {
+                carToOvertake = c;
+            }
+        }
+
+        if (car == null || carToOvertake == null) {
+            throw new IdNotFoundException("Car or carToOvertake not found in the race");
+        }
+
+        int carIndex = race.getCars().indexOf(car);
+        int carToOvertakeIndex = race.getCars().indexOf(carToOvertake);
+
+        if (carIndex > carToOvertakeIndex) {
+            race.getCars().remove(car);
+            race.getCars().add(carToOvertakeIndex, car);
+        } else {
+            throw new RuntimeException("Car cannot overtake carToOvertake");
+        }
+
+        raceRepository.save(race);
+
+        return mapToDTO(race);
+    }
 
 }

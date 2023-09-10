@@ -1,5 +1,18 @@
 
 o
-java:S1192'"MDefine a constant instead of duplicating this literal "Id not found" 3 times.(°Ì†‚üÿÿÿÿ8¯ ™ä¦1
+java:S11925"MDefine a constant instead of duplicating this literal "Id not found" 3 times.(°Ì†‚üÿÿÿÿ8Ş˜²·§1
 „
-java:S1488"gImmediately return this expression instead of assigning it to the temporary variable "raceDtoResponse".(¦’µß8¯ä¦1
+java:S1488$"gImmediately return this expression instead of assigning it to the temporary variable "raceDtoResponse".(¦’µß8ß˜²·§1
+†
+java:S1488T"dImmediately return this expression instead of assigning it to the temporary variable "selectedCars".(Œ¸ü‡üÿÿÿÿ8ß˜²·§1
+o
+java:S6204="RReplace this usage of 'Stream.collect(Collectors.toList())' with 'Stream.toList()'(ª™¨¹8ù˜²·§1
+;
+java:S2119S"Save and re-use this "Random".(¨ŞƒÈ8ı˜²·§1
+h
+java:S1128"KRemove this unused import 'com.beatriz.msraces.entity.RaceCarRelationship'.(ıóÍ°8è²Å¸§1
+v
+java:S1128
+"YRemove this unused import 'com.beatriz.msraces.repository.RaceCarRelationshipRepository'.(´»¯È8é²Å¸§1
+M
+java:S1128"0Remove this unused import 'java.util.ArrayList'.(÷‰îƒ8é²Å¸§1

@@ -11,8 +11,6 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
-import java.util.Random;
-import java.util.stream.Collectors;
 
 @RestController
 @RequestMapping("/api/v1/races")
@@ -31,7 +29,7 @@ public class RaceController {
     }
 
     @GetMapping("/get/{id}")
-    public ResponseEntity<RaceDtoResponse> getRaceById(@PathVariable String id){
+    public ResponseEntity<Race> getRaceById(@PathVariable String id){
         return ResponseEntity.ok(raceService.getRaceById(id));
     }
 
@@ -57,4 +55,13 @@ public class RaceController {
         return carFeignClient.getTop10Cars();
     }
 
+    @PostMapping("/race/{raceId}/overtake/{carId}/{carToOvertakeId}")
+    public ResponseEntity<RaceDtoResponse> overtakeCar(
+            @PathVariable String raceId,
+            @PathVariable String carId,
+            @PathVariable String carToOvertakeId
+    ) {
+        RaceDtoResponse updatedRace = raceService.overtakeCar(raceId, carId, carToOvertakeId);
+        return ResponseEntity.ok(updatedRace);
+    }
 }
