@@ -55,7 +55,7 @@ public class RaceController {
         return carFeignClient.getTop10Cars();
     }
 
-    @PostMapping("/race/{raceId}/overtake/{carId}/{carToOvertakeId}")
+    @PutMapping("/{raceId}/overtake/{carId}/{carToOvertakeId}")
     public ResponseEntity<RaceDtoResponse> overtakeCar(
             @PathVariable String raceId,
             @PathVariable String carId,
@@ -63,5 +63,10 @@ public class RaceController {
     ) {
         RaceDtoResponse updatedRace = raceService.overtakeCar(raceId, carId, carToOvertakeId);
         return ResponseEntity.ok(updatedRace);
+    }
+
+    @PutMapping("/finish/{id}")
+    public ResponseEntity<Race> finishRace(@PathVariable String id){
+        return ResponseEntity.ok(raceService.finishRace(id));
     }
 }
