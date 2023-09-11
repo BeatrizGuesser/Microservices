@@ -10,6 +10,9 @@ import com.beatriz.msraces.exception.IdNotFoundException;
 import com.beatriz.msraces.exception.InvalidActionException;
 import com.beatriz.msraces.exception.InvalidOvertakeException;
 import com.beatriz.msraces.repository.RaceRepository;
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import org.bson.json.JsonObject;
 import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Service;
 
@@ -23,12 +26,15 @@ public class RaceService {
     private RaceRepository raceRepository;
     private ModelMapper mapper;
     private CarFeignClient carFeignClient;
+    private final RabbitMQService rabbitMQService;
+    private final ObjectMapper objectMapper;
 
-
-    public RaceService(RaceRepository raceRepository, ModelMapper mapper, CarFeignClient carFeignClient) {
+    public RaceService(RaceRepository raceRepository, ModelMapper mapper, CarFeignClient carFeignClient, RabbitMQService rabbitMQService, ObjectMapper objectMapper) {
         this.raceRepository = raceRepository;
         this.mapper = mapper;
         this.carFeignClient = carFeignClient;
+        this.rabbitMQService = rabbitMQService;
+        this.objectMapper = objectMapper;
     }
 
 
@@ -135,7 +141,16 @@ public class RaceService {
 
         race.setStatus("RACE FINISHED!");
         raceRepository.save(race);
+
+        try {
+            String raceJson = objectMapper.writeValueAsString(race);
+            rabbitMQService.sendResultRace("Race Result: " + raceJson);
+        } catch (JsonProcessingException e) {
+            e.printStackTrace();
+        }
+
         return race;
     }
+
 
 }
