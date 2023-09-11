@@ -1,0 +1,22 @@
+
+a	java:S112{"FDefine and throw a dedicated exception instead of using a generic one.(óÅ‘8Ø­úˆ¨1
+o
+java:S11925"MDefine a constant instead of duplicating this literal "Id not found" 4 times.(°Ì†‚üÿÿÿÿ8ééøˆ¨1
+q
+java:S1192D"ODefine a constant instead of duplicating this literal "RACE FINISHED!" 3 times.(¥®üÿÿÿÿ8ééøˆ¨1
+„
+java:S1488$"gImmediately return this expression instead of assigning it to the temporary variable "raceDtoResponse".(¦’µß8ééøˆ¨1
+~
+java:S14885"\Immediately return this expression instead of assigning it to the temporary variable "race".(°Ì†‚üÿÿÿÿ8ééøˆ¨1
+†
+java:S1488Y"dImmediately return this expression instead of assigning it to the temporary variable "selectedCars".(Œ¸ü‡üÿÿÿÿ8ééøˆ¨1
+o
+java:S6204="RReplace this usage of 'Stream.collect(Collectors.toList())' with 'Stream.toList()'(ª™¨¹8úéøˆ¨1
+;
+java:S2119X"Save and re-use this "Random".(¨ŞƒÈ8€êøˆ¨1
+o
+java:S3776^"RRefactor this method to reduce its Cognitive Complexity from 16 to the 15 allowed.(„òû¿8ï­úˆ¨1
+l
+java:S1128"ORemove this unused import 'com.beatriz.msraces.exception.CarNotFoundException'.(õ÷äÁ8å¬‰¨1
+u
+java:S1128"SRemove this unused import 'com.beatriz.msraces.exception.InvalidOvertakeException'.(ÇäÂôüÿÿÿÿ8å¬‰¨1
