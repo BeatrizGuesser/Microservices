@@ -7,6 +7,8 @@ j
 :ms-cars/src/main/java/com/beatriz/mscars/entity/Pilot.java,0\d\0d3be3a53c7f6506b0bfc10ae4b23cfffcafebf7
 v
 Fms-cars/src/main/java/com/beatriz/mscars/repository/CarRepository.java,b\0\b078c4cdd493eedacc71617c68e92912afac6c30
+x
+Hms-cars/src/main/java/com/beatriz/mscars/repository/PilotRepository.java,a\5\a562255abc067c3572eec02d2a0cd7bfd4bcbcbe
 o
 ?ms-cars/src/main/java/com/beatriz/mscars/dto/CarDtoRequest.java,8\8\8868c12770a45a5acc97bd7a606d6d0c6e27c5aa
 p
@@ -31,7 +33,3 @@ E
 ms-races/compose.yaml,2\a\2a38360a6794d017bbaa69ced270ce6d18d042f4
 D
 ms-cars/compose.yaml,2\7\27c4694f3a89fb7c8f7fef0e896ae0059ddb801b
-S
-#.idea/sonarlint/issuestore/index.pb,9\f\9fe84ebb15faf917b7def6236dba604453cc61e0
-]
--.idea/sonarlint/securityhotspotstore/index.pb,8\8\88a9255124c95bdc913197c120a8d560edc59c8e
