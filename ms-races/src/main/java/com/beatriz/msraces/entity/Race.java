@@ -27,15 +27,4 @@ public class Race {
     private List<CarDtoResponse> cars;
     private String status;
 
-    @Override
-    public String toString() {
-        return "Race{" +
-                "id='" + id + '\'' +
-                ", name='" + name + '\'' +
-                ", country='" + country + '\'' +
-                ", date=" + date +
-                ", cars=" + cars +
-                ", status='" + status + '\'' +
-                '}';
-    }
 }

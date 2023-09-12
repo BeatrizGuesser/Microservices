@@ -32,8 +32,8 @@ public class CarController {
     }
 
     @GetMapping("/get")
-    public List<Car> findAll() {
-        return carService.findAll();
+    public ResponseEntity<List<Car>> findAll() {
+        return ResponseEntity.ok(carService.findAll());
     }
 
     @PutMapping("/update/{id}")
@@ -47,9 +47,8 @@ public class CarController {
         carService.deleteCarById(id);
         return new ResponseEntity<>("Car deleted successfully.", HttpStatus.OK);
     }
-
     @GetMapping("/get/top10")
-    public List<CarDtoResponse> getTop10Cars() {
-        return carService.getTop10Cars();
+    public ResponseEntity<List<CarDtoResponse>> getTop10Cars() {
+        return ResponseEntity.ok(carService.getTop10Cars());
     }
 }
