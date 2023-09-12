@@ -19,4 +19,5 @@ public class CarDtoResponse {
     private Pilot pilot;
     @JsonFormat(pattern = "yyyy")
     private Date year;
+
 }

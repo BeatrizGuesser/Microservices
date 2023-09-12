@@ -49,7 +49,6 @@ public class RaceController {
         raceService.deleteRaceById(id);
         return new ResponseEntity<>("Race deleted successfully.", HttpStatus.OK);
     }
-
     @GetMapping("/get10")
     public ResponseEntity<List<CarDtoResponse>> getTop10Cars(){
         return ResponseEntity.ok(carFeignClient.getTop10Cars());

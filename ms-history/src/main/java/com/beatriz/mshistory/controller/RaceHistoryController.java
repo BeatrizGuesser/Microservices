@@ -3,7 +3,6 @@ package com.beatriz.mshistory.controller;
 import com.beatriz.mshistory.entity.RaceHistory;
 import com.beatriz.mshistory.repository.HistoryRepository;
 import com.beatriz.mshistory.service.HistoryService;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 

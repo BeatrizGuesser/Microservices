@@ -47,7 +47,6 @@ public class CarController {
         carService.deleteCarById(id);
         return new ResponseEntity<>("Car deleted successfully.", HttpStatus.OK);
     }
-
     @GetMapping("/get/top10")
     public ResponseEntity<List<CarDtoResponse>> getTop10Cars() {
         return ResponseEntity.ok(carService.getTop10Cars());

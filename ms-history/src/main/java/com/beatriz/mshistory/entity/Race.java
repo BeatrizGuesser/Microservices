@@ -9,6 +9,7 @@ import lombok.Setter;
 
 import java.util.Date;
 import java.util.List;
+
 @Getter
 @Setter
 @AllArgsConstructor
@@ -21,4 +22,5 @@ public class Race {
     private Date date;
     private List<CarDtoResponse> cars;
     private String status;
+
 }

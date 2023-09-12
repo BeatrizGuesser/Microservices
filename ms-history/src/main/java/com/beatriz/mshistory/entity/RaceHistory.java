@@ -1,7 +1,5 @@
 package com.beatriz.mshistory.entity;
 
-import com.beatriz.mshistory.dto.CarDtoResponse;
-import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -11,7 +9,6 @@ import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 import java.util.Date;
-import java.util.List;
 @Getter
 @Setter
 @AllArgsConstructor
