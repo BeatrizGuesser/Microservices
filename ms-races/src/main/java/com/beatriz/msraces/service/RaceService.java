@@ -144,7 +144,7 @@ public class RaceService {
 
         try {
             String raceJson = objectMapper.writeValueAsString(race);
-            rabbitMQService.sendResultRace("Race Result: " + raceJson);
+            rabbitMQService.sendResultRace(raceJson);
         } catch (JsonProcessingException e) {
             e.printStackTrace();
         }
