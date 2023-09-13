@@ -1,0 +1,11 @@
+
+~
+java:S1488"\Immediately return this expression instead of assigning it to the temporary variable "race".(ÅÇ¨µûÿÿÿÿ8À®ªÊ¨1
+
+java:S1488 "]Immediately return this expression instead of assigning it to the temporary variable "races".(¡Ê·…ùÿÿÿÿ8‘ÉÕÊ¨1
+g
+java:S1128"ERemove this unused import 'com.beatriz.mshistory.dto.CarDtoResponse'.(óÉ´Ñşÿÿÿÿ8’ÊÀÊ¨1
+e
+java:S1128"HRemove this unused import 'com.fasterxml.jackson.databind.ObjectMapper'.(´‘¨™8’ÊÀÊ¨1
+Z
+java:S1128	"8Remove this unused import 'org.modelmapper.ModelMapper'.(ó¿Ôúÿÿÿÿ8ï÷òÊ¨1

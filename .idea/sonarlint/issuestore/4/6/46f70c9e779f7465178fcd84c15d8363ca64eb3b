@@ -1,0 +1,7 @@
+
+o
+java:S11929"MDefine a constant instead of duplicating this literal "Id not found" 3 times.(ªÈÙşÿÿÿÿ8–å®á¦1
+ƒ
+java:S1488"fImmediately return this expression instead of assigning it to the temporary variable "carDtoResponse".(ŒÑêú8¢ë‚¯§1
+t
+java:S6204V"RReplace this usage of 'Stream.collect(Collectors.toList())' with 'Stream.toList()'(ş½£óûÿÿÿÿ8ºë‚¯§1
