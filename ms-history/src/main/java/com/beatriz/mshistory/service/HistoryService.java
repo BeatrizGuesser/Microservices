@@ -1,12 +1,9 @@
 package com.beatriz.mshistory.service;
 
-import com.beatriz.mshistory.dto.CarDtoResponse;
 import com.beatriz.mshistory.entity.Race;
 import com.beatriz.mshistory.entity.RaceHistory;
 import com.beatriz.mshistory.exception.IdNotFoundException;
 import com.beatriz.mshistory.repository.HistoryRepository;
-import com.fasterxml.jackson.databind.ObjectMapper;
-import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Service;
 
 import java.util.List;

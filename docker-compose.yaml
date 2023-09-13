@@ -1,0 +1,70 @@
+version: "3.8"
+services:
+  mongodb:
+    image: 'mongo:latest'
+    environment:
+      - 'MONGO_INITDB_DATABASE=mydatabase'
+      - 'MONGO_INITDB_ROOT_PASSWORD=secret'
+      - 'MONGO_INITDB_ROOT_USERNAME=root'
+    ports:
+      - '27017'
+    networks:
+      - connection
+
+  rabbitmq:
+    image: 'rabbitmq:latest'
+    environment:
+      - 'RABBITMQ_DEFAULT_PASS=secret'
+      - 'RABBITMQ_DEFAULT_USER=myuser'
+    ports:
+      - '5672'
+    networks:
+      - connection
+
+  ms-cars:
+    container_name: ms-cars
+    build:
+      context: ./ms-cars
+      dockerfile: Dockerfile
+    environment:
+      - MONGO_HOST=mongodb
+    depends_on:
+      - mongodb
+    networks:
+      - connection
+
+  ms-races:
+    container_name: ms-races
+    build:
+      context: ./ms-races
+      dockerfile: Dockerfile
+    environment:
+      - MONGO_HOST=mongodb
+      - RABBITMQ_HOST=rabbitmq
+      - MS-CARS_HOST=ms-cars
+    depends_on:
+      - mongodb
+      - rabbitmq
+    networks:
+      - connection
+
+  ms-history:
+    container_name: ms-history
+    build:
+      context: ./ms-history
+      dockerfile: Dockerfile
+    environment:
+      - MONGO_HOST=mongodb
+      - RABBITMQ_HOST=rabbitmq
+    depends_on:
+      - mongodb
+      - rabbitmq
+    networks:
+      - connection
+
+
+networks:
+  connection:
+    driver: bridge
+
+

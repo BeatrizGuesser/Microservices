@@ -1,0 +1,205 @@
+{
+	"info": {
+		"_postman_id": "0cb8afab-7456-41b6-ba81-b6412eab9eb7",
+		"name": "Microservices",
+		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json",
+		"_exporter_id": "28387051"
+	},
+	"item": [
+		{
+			"name": "ms-cars",
+			"item": [
+				{
+					"name": "Post Car",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"brand\": \"String\",\r\n    \"model\": \"String\",\r\n    \"pilot\": {\r\n        \"name\": \"String\",\r\n        \"age\": 20\r\n    }, \r\n    \"year\": \"2023\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "http://localhost:8080/api/v1/cars/post"
+					},
+					"response": []
+				},
+				{
+					"name": "Get All Cars",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": "http://localhost:8080/api/v1/cars/get"
+					},
+					"response": []
+				},
+				{
+					"name": "Get Car",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": "http://localhost:8080/api/v1/cars/get/{id}"
+					},
+					"response": []
+				},
+				{
+					"name": "Update Car",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"brand\": \"String\",\r\n    \"model\": \"String\",\r\n    \"pilot\": {\r\n        \"name\": \"String\",\r\n        \"age\": 26\r\n    },\r\n    \"year\": \"2022\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "http://localhost:8080/api/v1/cars/update/{id}"
+					},
+					"response": []
+				},
+				{
+					"name": "Delete Car",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": "http://localhost:8080/api/v1/cars/delete/{id}"
+					},
+					"response": []
+				},
+				{
+					"name": "Get top 10 cars",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": "http://localhost:8080/api/v1/cars/get/top10"
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "ms-races",
+			"item": [
+				{
+					"name": "Post Race",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"String\",\r\n    \"country\": \"String\",\r\n    \"date\": \"13/09/2023\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "http://localhost:8081/api/v1/races/post"
+					},
+					"response": []
+				},
+				{
+					"name": "Get All Races",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": "http://localhost:8081/api/v1/races/get"
+					},
+					"response": []
+				},
+				{
+					"name": "Get Race",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": "http://localhost:8081/api/v1/races/get/{id}"
+					},
+					"response": []
+				},
+				{
+					"name": "Update Race",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"String\",\r\n    \"country\": \"String\",\r\n    \"date\": \"20/02/2020\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "http://localhost:8081/api/v1/races/update/{id}"
+					},
+					"response": []
+				},
+				{
+					"name": "Delete Race",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": "http://localhost:8081/api/v1/races/delete/{id}"
+					},
+					"response": []
+				},
+				{
+					"name": "Overtake a Car",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"url": "http://localhost:8081/api/v1/races/{idRace}/overtake/{carId}/{carToOvertakeId}"
+					},
+					"response": []
+				},
+				{
+					"name": "Finish Race",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"url": "http://localhost:8081/api/v1/races/finish/{id}"
+					},
+					"response": []
+				},
+				{
+					"name": "Get 10 cars",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": "http://localhost:8081/api/v1/races/get10"
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "ms-history",
+			"item": [
+				{
+					"name": "Get All Races History",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": "http://localhost:8082/api/v1/races/history/get"
+					},
+					"response": []
+				},
+				{
+					"name": "Get Race History",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": "http://localhost:8082/api/v1/races/history/get/{id}"
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}

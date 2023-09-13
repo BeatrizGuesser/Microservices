@@ -5,14 +5,11 @@ import com.beatriz.msraces.dto.CarDtoResponse;
 import com.beatriz.msraces.dto.RaceDtoRequest;
 import com.beatriz.msraces.dto.RaceDtoResponse;
 import com.beatriz.msraces.entity.Race;
-import com.beatriz.msraces.exception.CarNotFoundException;
 import com.beatriz.msraces.exception.IdNotFoundException;
 import com.beatriz.msraces.exception.InvalidActionException;
-import com.beatriz.msraces.exception.InvalidOvertakeException;
 import com.beatriz.msraces.repository.RaceRepository;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import org.bson.json.JsonObject;
 import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Service;
 
